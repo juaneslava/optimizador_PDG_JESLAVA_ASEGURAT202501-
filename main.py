@@ -17,10 +17,39 @@ if __name__ == "__main__":
     print("   - 'base' si escribiste la cantidad en la criptomoneda (ej: ETH)")
     print("   - 'quote' si escribiste el monto en USDT, BTC, etc.\n")
 
-    operation_type = input("¿Quieres comprar o vender? (buy/sell): ").lower()
+        # Obtener tipo de operación
+    while True:
+        operation_type = input("¿Quieres comprar o vender? (buy/sell): ").lower()
+        if operation_type in ["buy", "sell"]:
+            break
+        print("❌ Entrada inválida. Escribe 'buy' o 'sell'.")
+
+    # Obtener par
     pair_input = input("¿Qué par quieres operar? (ej: ETHUSDT): ").upper()
-    amount = float(input("¿Cuánto quieres operar?: "))
-    amount_type = input("¿Es cantidad en base o quote? (base/quote): ").lower()
+
+    # Obtener monto
+    while True:
+        try:
+            amount = float(input("¿Cuánto quieres operar?: "))
+            if amount > 0:
+                break
+            else:
+                print("❌ El monto debe ser mayor que 0.")
+        except ValueError:
+            print("❌ Entrada inválida. Ingresa un número válido.")
+
+    # Obtener tipo de cantidad con validación adicional
+    while True:
+        amount_type = input("¿Es cantidad en base o quote? (base/quote): ").lower()
+        if amount_type in ["base", "quote"]:
+            if operation_type == "sell" and amount_type == "quote":
+                print("⚠️ No puedes vender indicando el monto en quote.")
+                print("💡 Por favor indica cuánto del activo base deseas vender.")
+            else:
+                break
+        else:
+            print("❌ Entrada inválida. Escribe 'base' o 'quote'.")
+
 
 
     # === 2. Ajustar el formato del par según el exchange ===
@@ -73,8 +102,8 @@ if __name__ == "__main__":
 
         print("Exchange | Precio Prom. | Fee | Total Final")
         print("----------------------------------------------")
-        print(f"Binance  | {binance_result['average_price']} | {binance_result['taker_fee']} | {binance_result['final_total']}")
-        print(f"KuCoin   | {kucoin_result['average_price']} | {kucoin_result['taker_fee']} | {kucoin_result['final_total']}")
+        print(f"Binance  | {round(binance_result['average_price'], 5)} | {binance_result['taker_fee']} | {binance_result['final_total']}")
+        print(f"KuCoin   | {round(kucoin_result['average_price'], 5)} | {kucoin_result['taker_fee']} | {kucoin_result['final_total']}")
     else:
         print("No fue posible obtener los datos de ambos exchanges.")
     
@@ -114,9 +143,11 @@ if __name__ == "__main__":
 
         print(f"{exchange:<8} | {avg_price:<13} | {fee:<7} | {final:<11} | {pct:<8}% | {valor} {unidad}")
 
+    unidad_resultado = quote if amount_type == "base" else base
 
     print("-------------------------------------------------------------------------")
-    print(f"🧮 Resultado total optimizado: {round(opt_total, 4)} {quote}")
+    print(f"🧮 Resultado total optimizado: {round(opt_total, 4)} {unidad_resultado}")
+
 
     print("\n--- FIN DEL SIMULADOR ---")
 

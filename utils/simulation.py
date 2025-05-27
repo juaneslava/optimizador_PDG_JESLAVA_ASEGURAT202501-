@@ -39,11 +39,27 @@ def simulate_order(order_book, operation_type, amount, amount_type, fee_rate):
     # Precio promedio ponderado por volumen
     average_price = executed_cost / executed_volume
 
+    # === Aplicación del fee ===
+    if operation_type == "buy":
+        if amount_type == "quote":
+            # Compraste ETH con USDT → aplica fee sobre ETH recibido
+            fee = executed_volume * fee_rate
+            final_total = executed_volume - fee
+        else:
+            # Compraste X ETH → pagaste en USDT → fee en USDT
+            fee = executed_cost * fee_rate
+            final_total = executed_cost + fee
+    else:  # sell
+        # Vendiste ETH → recibes USDT → aplica fee sobre ingreso
+        fee = executed_cost * fee_rate
+        final_total = executed_cost - fee
+
+
     # Calcular la comisión (fee)
-    total_fee = executed_cost * fee_rate
+    #total_fee = executed_cost * fee_rate
 
     # Resultado total: si compras, pagas fee; si vendes, te descuentan el fee
-    total_spent = executed_cost + total_fee if operation_type == "buy" else executed_cost - total_fee
+    #total_spent = executed_cost + total_fee if operation_type == "buy" else executed_cost - total_fee
 
     return {
         "operation": operation_type,
@@ -51,7 +67,7 @@ def simulate_order(order_book, operation_type, amount, amount_type, fee_rate):
         "executed_volume": executed_volume,           # Cuánto ETH compraste o vendiste
         "average_price": round(average_price, 5),     # Precio promedio ponderado
         "total_cost_before_fee": round(executed_cost, 5),
-        "taker_fee": round(total_fee, 5),
-        "final_total": round(total_spent, 5)          # Total pagado (buy) o recibido (sell)
+        "taker_fee": round(fee, 5),
+        "final_total": round(final_total, 5)          # Total pagado (buy) o recibido (sell)
     }
  
