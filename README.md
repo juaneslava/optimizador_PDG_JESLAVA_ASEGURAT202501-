@@ -80,7 +80,7 @@ simulador-trading/
 
 ## 📚 Documentación
 
-Consulta el archivo `documentacion_latex/` para ver el modelo matemático detallado, el diagrama de flujo y la explicación del funcionamiento del libro de órdenes.
+Consulta el archivo `documentacion/` para ver el documento del proyecto de grado.
 
 ## 🧑‍💻 Autor
 
