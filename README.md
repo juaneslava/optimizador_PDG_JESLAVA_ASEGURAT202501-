@@ -61,7 +61,7 @@ Al finalizar, se mostrará una tabla comparativa entre los exchanges y la mejor 
 ## ⚙️ Estructura del Proyecto
 
 ```
-simulador-trading/
+optimizador_PDG_JESLAVA_ASEGURAT202501-/
 ├── main.py
 ├── config.py
 ├── requirements.txt
