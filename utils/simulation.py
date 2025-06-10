@@ -37,7 +37,8 @@ def simulate_order(order_book, operation_type, amount, amount_type, fee_rate):
                 executed_cost += qty * price
 
     # Precio promedio ponderado por volumen
-    average_price = executed_cost / executed_volume
+    average_price = executed_cost / executed_volume if executed_volume != 0 else 0
+
 
     # === Aplicación del fee ===
     if operation_type == "buy":
