@@ -1,10 +1,10 @@
 # 🔁 Simulador y Optimizador de Trading entre Exchanges
 
-Este proyecto permite simular la ejecución de órdenes de compra o venta en múltiples exchanges (Binance y KuCoin), usando libros de órdenes reales en tiempo real. Además, implementa un modelo matemático de optimización para determinar la mejor distribución de la orden entre los exchanges disponibles, maximizando la eficiencia de la operación.
+Este proyecto permite simular la ejecución de órdenes de compra o venta en múltiples exchanges (Binance, Kraken, KuCoin y Coinbase), usando libros de órdenes reales en tiempo real. Además, implementa un modelo matemático de optimización para determinar la mejor distribución de la orden entre los exchanges disponibles, maximizando la eficiencia de la operación.
 
 ## 🧠 ¿Qué hace?
 
-- Consulta los order books reales de Binance y KuCoin.
+- Consulta los order books reales de Binance, Kraken, KuCoin y Coinbase.
 - Simula el resultado de ejecutar toda la orden en cada exchange.
 - Calcula el precio promedio, slippage y comisión (`taker fee`).
 - Optimiza la distribución entre exchanges usando programación numérica con restricciones.
@@ -71,6 +71,7 @@ optimizador_PDG_JESLAVA_ASEGURAT202501-/
 ├── utils/
 │   ├── simulation.py
 │   ├── optimization.py
+├── outputs/
 ```
 
 ## 📈 Extensibilidad
