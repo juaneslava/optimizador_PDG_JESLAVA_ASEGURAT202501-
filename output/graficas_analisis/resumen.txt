@@ -1,0 +1,18 @@
+
+=== Totales para operaciones 'buy' ===
+→ Total operado: 9335.77 base
+→ Total Binance:   23820279.4144
+→ Total KuCoin:    23823784.0465
+→ Total Kraken:    23860405.4199
+→ Total Coinbase:  23969362.9104
+→ Total Optimizado:23819270.3787
+✅ Ahorro total: 1009.0357 → 0.00424% respecto al mejor exchange
+
+=== Totales para operaciones 'sell' ===
+→ Total operado: 9498.97 base
+→ Total Binance:   24131039.1435
+→ Total KuCoin:    24126674.3262
+→ Total Kraken:    24092149.2377
+→ Total Coinbase:  23927678.2616
+→ Total Optimizado:24132381.3889
+✅ Ganancia adicional total: 1342.2454 → 0.00556% respecto al mejor exchange

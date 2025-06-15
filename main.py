@@ -79,13 +79,7 @@ if __name__ == "__main__":
     fees = [BINANCE_FEE, KUCOIN_FEE, KRAKEN_FEE, COINBASE_FEE]
     exchange_names = ["Binance", "KuCoin", "Kraken", "Coinbase"]
 
-
-    # === 4. Ejecutar optimización con los mismos libros ===
-    optimization_result = optimize_distribution(
-        order_books, fees, operation_type, amount, amount_type
-    )
-
-    # === 5. Simulación de 100% en cada exchange con los mismos libros ===
+    # === 4. Simulación de 100% en cada exchange con los mismos libros ===
     results_full = []
     for i in range(len(order_books)):
         result = simulate_order(
@@ -103,6 +97,11 @@ if __name__ == "__main__":
         total = results_full[i]["final_total"]
         print(f"{exchange:<8} | {avg:<13} | {fee:<7} | {total:<11}")
 
+
+    # === 5. Ejecutar optimización con los mismos libros ===
+    optimization_result = optimize_distribution(
+        order_books, fees, operation_type, amount, amount_type
+    )
     # === 6. Mostrar tabla final optimizada ===
     opt_dist = optimization_result["optimal_distribution"]
     opt_total = optimization_result["total_final"]
